@@ -55,18 +55,20 @@ The React application runs on Vite for fast hot-reloading.
 
 # Run development server
 `npm run dev`
+
 Open http://localhost:5173 to view the dashboard.
 
-2. Verify Backend Logic
+### 2. Verify Backend Logic
 The Python script verifies the data contract and mutation logic required for the backend assignment task.
 
-Bash
 
 # Run the simulation script
 python appointment_service.py
 This will output the mock data query results and demonstrate a successful status update transaction.
 
-📂 Project Structure
+## 📂 Project Structure
+
+```text
 ├── src/
 │   ├── components/      # UI Building Blocks (Cards, Calendar, Sidebar)
 │   ├── hooks/           # Business Logic (useAppointments.js)
