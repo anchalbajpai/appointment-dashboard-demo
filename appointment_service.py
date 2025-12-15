@@ -14,6 +14,11 @@ MOCK_APPOINTMENTS: List[Appointment] = [
     { "id": "3", "name": "Emily Rodriguez", "date": "2025-11-06", "time": "11:30 AM", "duration": "30 min", "doctorName": "Dr. Rajesh Kumar", "status": "Confirmed", "mode": "Video Call" },
     { "id": "4", "name": "John Doe", "date": "2025-11-07", "time": "02:00 PM", "duration": "15 min", "doctorName": "Dr. Priya Sharma", "status": "Upcoming", "mode": "In-Person" },
     { "id": "5", "name": "Alice Cooper", "date": "2025-11-05", "time": "09:30 AM", "duration": "60 min", "doctorName": "Dr. Rajesh Kumar", "status": "Completed", "mode": "Video Call" },
+    { "id": "6", "name": "Bob Smith", "date": "2025-11-15", "time": "04:00 PM", "duration": "30 min", "doctorName": "Dr. Priya Sharma", "status": "Scheduled", "mode": "In-Person" },
+    { "id": "7", "name": "Linda Wu", "date": "2025-11-06", "time": "01:00 PM", "duration": "30 min", "doctorName": "Dr. Rajesh Kumar", "status": "Cancelled", "mode": "Video Call" },
+    { "id": "8", "name": "Tom Baker", "date": "2025-11-08", "time": "09:00 AM", "duration": "15 min", "doctorName": "Dr. Priya Sharma", "status": "Upcoming", "mode": "In-Person" },
+    { "id": "9", "name": "Nancy Drew", "date": "2025-11-05", "time": "02:00 PM", "duration": "45 min", "doctorName": "Dr. Rajesh Kumar", "status": "Completed", "mode": "In-Person" },
+    { "id": "10", "name": "Kevin Hart", "date": "2025-11-10", "time": "10:30 AM", "duration": "30 min", "doctorName": "Dr. Aditi Rao", "status": "Scheduled", "mode": "Video Call" },
 ]
 
 def get_appointments(filters: Optional[Dict[str, Any]] = None) -> List[Appointment]:

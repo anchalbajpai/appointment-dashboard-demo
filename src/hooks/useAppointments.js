@@ -55,17 +55,57 @@ const MOCK_DB = [
     type: "Video Call",
     status: "Completed",
   },
-  {
-    id: 6,
-    name: "Bob Smith",
-    date: "2025-11-15",
-    time: "04:00 PM",
-    duration: "30 min",
-    doctor: "Dr. Priya Sharma",
-    type: "In-Person",
-    status: "Scheduled",
+  // --- NEW ITEMS ADDED BELOW ---
+  { 
+    id: 6, 
+    name: "Bob Smith", 
+    date: "2025-11-15", 
+    time: "04:00 PM", 
+    duration: "30 min", 
+    doctor: "Dr. Priya Sharma", 
+    type: "In-Person", 
+    status: "Scheduled" 
   },
-  // In production, pagination logic would be handled here to lazy-load additional records.
+  { 
+    id: 7, 
+    name: "Linda Wu", 
+    date: "2025-11-06", 
+    time: "01:00 PM", 
+    duration: "30 min", 
+    doctor: "Dr. Rajesh Kumar", 
+    type: "Video Call", 
+    status: "Cancelled" 
+  },
+  { 
+    id: 8, 
+    name: "Tom Baker", 
+    date: "2025-11-08", 
+    time: "09:00 AM", 
+    duration: "15 min", 
+    doctor: "Dr. Priya Sharma", 
+    type: "In-Person", 
+    status: "Upcoming" 
+  },
+  { 
+    id: 9, 
+    name: "Nancy Drew", 
+    date: "2025-11-05", 
+    time: "02:00 PM", 
+    duration: "45 min", 
+    doctor: "Dr. Rajesh Kumar", 
+    type: "In-Person", 
+    status: "Completed" 
+  },
+  { 
+    id: 10, 
+    name: "Kevin Hart", 
+    date: "2025-11-10", 
+    time: "10:30 AM", 
+    duration: "30 min", 
+    doctor: "Dr. Aditi Rao", 
+    type: "Video Call", 
+    status: "Scheduled" 
+  },
 ];
 
 /**
