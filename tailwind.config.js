@@ -4,7 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class', // <--- THIS LINE IS REQUIRED FOR THE TOGGLE TO WORK
+  darkMode: 'class', // For Dark Mode
   theme: {
     extend: {},
   },

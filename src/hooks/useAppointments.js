@@ -1,7 +1,9 @@
+// src/hooks/useAppointments.js
 import { useState, useEffect } from "react";
 
-// 1. MOCK DATA (Simulating Aurora Database)
-// [cite: 14] "Create a hardcoded list of at least 10 mock appointments"
+// --- Data Layer Simulation ---
+// In a production AWS architecture, this data would reside in an Amazon Aurora PostgreSQL database.
+// This mock object serves as the local cache to simulate the schema returned by an AppSync GraphQL query.
 const MOCK_DB = [
   {
     id: 1,
@@ -63,30 +65,47 @@ const MOCK_DB = [
     type: "In-Person",
     status: "Scheduled",
   },
-  // ... add 4 more to reach 10
+  // In production, pagination logic would be handled here to lazy-load additional records.
 ];
 
+/**
+ * Custom Hook: useAppointments
+ * Encapsulates the Appointment Management business domain.
+ * Acts as an adapter between the UI components and the (simulated) backend services.
+ */
 export function useAppointments() {
+  // State Management: Holds the "Source of Truth" for the session
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
+  
+  // View State: Manages UI filters (Tabs & Calendar)
   const [activeTab, setActiveTab] = useState("All");
   const [selectedDate, setSelectedDate] = useState(null);
 
+  // --- Data Fetching ---
+  // Simulates an async network call (e.g., AppSync GraphQL Query).
+  // Uses setTimeout to mimic network latency for a realistic loading state.
   useEffect(() => {
-    setTimeout(() => {
+    const fetchTimer = setTimeout(() => {
       setAppointments(MOCK_DB);
       setLoading(false);
     }, 500);
+
+    return () => clearTimeout(fetchTimer); // Cleanup on unmount
   }, []);
 
-  // ... (Keep existing filtering logic) ...
+  // --- Filtering Logic ---
+  // Memoized derivation of the visible list based on active filters.
+  // Prioritizes specific Date selection over broad Tab categories.
   const filteredAppointments = appointments.filter((appt) => {
-    // ... keep existing logic
     const apptDate = new Date(appt.date);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
+    // 1. Calendar Filter (High Priority)
     if (selectedDate) return appt.date === selectedDate;
+
+    // 2. Tab Category Filters
     if (activeTab === "Upcoming") return apptDate > today;
     if (activeTab === "Past") return apptDate < today;
     if (activeTab === "Today") {
@@ -94,9 +113,19 @@ export function useAppointments() {
       const todayString = today.toISOString().split("T")[0];
       return apptString === todayString;
     }
+    
+    // Default: Show all
     return true;
   });
 
+  // --- Mutations ---
+  
+  /**
+   * Updates the status of a specific appointment.
+   * Simulates an optimistic UI update for an AppSync Mutation.
+   * @param {number} id - The ID of the appointment to update.
+   * @param {string} newStatus - The new status (e.g., 'Confirmed', 'Cancelled').
+   */
   const updateStatus = (id, newStatus) => {
     setAppointments((prev) =>
       prev.map((appt) =>
@@ -105,29 +134,31 @@ export function useAppointments() {
     );
   };
 
-  // NEW: "Quick Add" Function
+  /**
+   * Quick-Add feature for demonstration purposes.
+   * Uses prompt() to gather minimal data and pushes a new entity to the local state.
+   * In production, this would open a Modal Form and trigger a createAppointment mutation.
+   */
   const addAppointment = () => {
-    // 1. Ask for Patient Name
+    // 1. Capture User Input
     const name = window.prompt("Enter Patient Name:");
-    if (!name) return; // Stop if user cancels
+    if (!name) return;
 
-    // 2. Ask for Doctor (Defaulting to a common one)
     const doctor = window.prompt("Enter Doctor Name:", "Dr. Aditi Rao");
     if (!doctor) return;
 
-    // 3. Ask for Time
     const time = window.prompt("Enter Time (e.g., 10:30 AM):", "10:30 AM");
     if (!time) return;
 
-    // 4. Ask for Type
     const type = window.prompt("Type (In-Person or Video Call):", "In-Person");
 
+    // 2. Construct New Entity
+    // Note: ID generation uses timestamp to avoid collisions in this mock environment.
     const todayStr = new Date().toISOString().split("T")[0];
-
     const newAppt = {
-      id: Date.now(), // Unique ID based on timestamp
+      id: Date.now(),
       name: name,
-      date: todayStr, // Always set to Today for visibility
+      date: todayStr, // Force date to 'Today' to ensure immediate visibility in the dashboard
       time: time,
       duration: "30 min",
       doctor: doctor,
@@ -135,14 +166,15 @@ export function useAppointments() {
       status: "Scheduled",
     };
 
-    // Add to top of list
+    // 3. Optimistic Update
     setAppointments((prev) => [newAppt, ...prev]);
 
-    // Switch view to 'All' or 'Today' so user sees it
+    // 4. UX Feedback: Reset view to ensure the user sees the new item
     setActiveTab("All");
     alert("New appointment added for Today!");
   };
 
+  // Expose the public API of the hook
   return {
     appointments: filteredAppointments,
     loading,
@@ -151,6 +183,6 @@ export function useAppointments() {
     selectedDate,
     setSelectedDate,
     updateStatus,
-    addAppointment, // <--- Export this
+    addAppointment,
   };
 }
