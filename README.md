@@ -3,7 +3,7 @@
 A full-stack feature implementation for an Electronic Medical Record (EMR) system. This dashboard manages patient appointments with a responsive React frontend and a Python-based backend simulation, demonstrating cloud-native architectural patterns.
 
 ## 🚀 Live Demo
-**https://appointment-dashboard-zeta.vercel.app/**
+**https://appointment-dashboard-demo.vercel.app/**
 
 ---
 

@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 // This mock object serves as the local cache to simulate the schema returned by an AppSync GraphQL query.
 const MOCK_DB = [
   {
-    id: 1,
+    id: "1",
     name: "Sarah Johnson",
     date: "2025-11-06",
     time: "09:00 AM",
@@ -16,7 +16,7 @@ const MOCK_DB = [
     status: "Confirmed",
   },
   {
-    id: 2,
+    id: "2",
     name: "Michael Chen",
     date: "2025-11-06",
     time: "10:00 AM",
@@ -26,7 +26,7 @@ const MOCK_DB = [
     status: "Scheduled",
   },
   {
-    id: 3,
+    id: "3",
     name: "Emily Rodriguez",
     date: "2025-11-06",
     time: "11:30 AM",
@@ -36,7 +36,7 @@ const MOCK_DB = [
     status: "Confirmed",
   },
   {
-    id: 4,
+    id: "4",
     name: "John Doe",
     date: "2025-11-07",
     time: "02:00 PM",
@@ -46,7 +46,7 @@ const MOCK_DB = [
     status: "Upcoming",
   },
   {
-    id: 5,
+    id: "5",
     name: "Alice Cooper",
     date: "2025-11-05",
     time: "09:30 AM",
@@ -57,7 +57,7 @@ const MOCK_DB = [
   },
   // --- NEW ITEMS ADDED BELOW ---
   { 
-    id: 6, 
+    id: "6", 
     name: "Bob Smith", 
     date: "2025-11-15", 
     time: "04:00 PM", 
@@ -67,7 +67,7 @@ const MOCK_DB = [
     status: "Scheduled" 
   },
   { 
-    id: 7, 
+    id: "7", 
     name: "Linda Wu", 
     date: "2025-11-06", 
     time: "01:00 PM", 
@@ -77,7 +77,7 @@ const MOCK_DB = [
     status: "Cancelled" 
   },
   { 
-    id: 8, 
+    id: "8", 
     name: "Tom Baker", 
     date: "2025-11-08", 
     time: "09:00 AM", 
@@ -87,7 +87,7 @@ const MOCK_DB = [
     status: "Upcoming" 
   },
   { 
-    id: 9, 
+    id: "9", 
     name: "Nancy Drew", 
     date: "2025-11-05", 
     time: "02:00 PM", 
@@ -97,7 +97,7 @@ const MOCK_DB = [
     status: "Completed" 
   },
   { 
-    id: 10, 
+    id: "10", 
     name: "Kevin Hart", 
     date: "2025-11-10", 
     time: "10:30 AM", 
